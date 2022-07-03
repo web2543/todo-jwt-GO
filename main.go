@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+	"os"
 	"todo/jwt/database"
 
 	//"todo/jwt/env"
@@ -25,5 +27,8 @@ func main() {
 
 	/*router.HandleFunc("/user",)
 	 */
-	http.ListenAndServe(":1112", router)
+	PORT := os.Getenv("PORT")
+	fmt.Printf("On port: %s", PORT)
+	http.ListenAndServe(":"+PORT, router)
+
 }
