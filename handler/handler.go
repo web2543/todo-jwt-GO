@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strings"
+	"os"
 	"time"
 	"todo/jwt/auth"
 	"todo/jwt/database"
@@ -232,12 +232,13 @@ func DeleteTodo(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&user_todo)
 }
 func Cors(w http.ResponseWriter, r *http.Request) {
-	url := strings.Split(r.Referer(), "/")
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	//url := strings.Split(r.Referer(), "/")
+	Origin := os.Getenv("ORIGIN")
+	w.Header().Set("Access-Control-Allow-Origin", Origin)
 	w.Header().Set("Access-Control-Allow-Methods", "GET,POST,PATCH,PUT,DELETE,OPTIONS")
 	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 	w.Header().Set("Access-Control-Allow-Credentials", "true")
-	fmt.Printf("%s//%s \n", url[0], url[2])
+	//fmt.Printf("%s//%s \n", url[0], url[2])
 }
 func unauthorized(w http.ResponseWriter) {
 	w.WriteHeader(http.StatusUnauthorized)
