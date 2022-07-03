@@ -3,14 +3,15 @@ package main
 import (
 	"net/http"
 	"todo/jwt/database"
-	"todo/jwt/env"
+
+	//"todo/jwt/env"
 	"todo/jwt/handler"
 
 	"github.com/gorilla/mux"
 )
 
 func main() {
-	env.Setenv()
+	//env.Setenv()
 	database.Connectdatabase()
 	database.Initdatabase()
 	router := mux.NewRouter()
