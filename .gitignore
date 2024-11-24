@@ -23,6 +23,7 @@ env.go
 
 #Database file
 *.sqlite
+*.db
 
 # Go workspace file
 go.work
